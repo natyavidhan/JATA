@@ -1,0 +1,64 @@
+body{
+  background-color: #313131;
+  color: white;
+  overflow: visible;
+}
+.todo-item{
+  display: flex;
+  padding: 6px;
+  margin: 4px;
+  justify-content: space-between;
+  align-items: center;
+  border: 3px solid #4e4d4d;
+  background-color: #4e4d4d;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+.todo-item:hover{
+  background-color: #313131;
+  border: 3px solid #4e4d4d;
+  transition: 0.3s ease-in-out;
+}
+.todo-item-button{
+  border: none;
+  padding: 5px;
+  margin: 2px;
+  background-color: #4e4d4d;
+  border-radius: 15px;
+  transition: 0.3s ease-in-out;
+}
+.todo-item-button:active{
+  background-color: #343434;
+  transition: 0.1s ease-in-out;
+}
+.add-item{
+  margin-top: 10px;
+  padding: 5px;
+}
+.add-item-input{
+  width: 80%;
+  background-color: #4e4d4d;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  height: 30px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+}
+.add-item-button{
+  width: 15%;
+  background-color: #4e4d4d;
+  border: none;
+  border-radius: 15px;
+  padding: 5px;
+  height: 30px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+}
+.add-item-button:active{
+  background-color: #343434;
+}
+.done{
+  text-decoration: line-through;
+  background-color: #383838;
+}
