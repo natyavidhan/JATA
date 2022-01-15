@@ -15,102 +15,13 @@
     <center>
         <h1>ToDos</h1>
     </center>
-    <div class="todo-list">
-      <div class="add-item">
-          <input type="text" name="item-name" id="item-name" class="add-item-input"></input>
-          <button class="add-item-button" id="add-item">Add</button>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
-      <div class="todo-item">
-          <h3 class="todo-item-name done">Do Homework</h3>
-          <div class="buttons">
-              <button class="todo-item-button">✅</button>
-              <button class="todo-item-button">🗑️</button>
-          </div>
-      </div>
+    <center>
+        <div class="add-item">
+            <input type="text" name="item-name" id="item-name" class="add-item-input"></input>
+            <button class="add-item-button" id="add-item" onclick="addTodo()">Add</button>
+        </div>
+    </center>
+    <div class="todo-list" id="todo-list">
       <div class="todo-item">
           <h3 class="todo-item-name done">Do Homework</h3>
           <div class="buttons">
@@ -119,6 +30,38 @@
           </div>
       </div>
     </div>
-    
+    <script>
+        loadTodo();
+        function addTodo(){
+            var todo = document.getElementById("item-name").value;
+            var alltodos = localStorage.getItem("todos") || "[]";
+            var todos = JSON.parse(alltodos);
+            todos.push([todo, false]);
+            localStorage.setItem("todos", JSON.stringify(todos));
+            document.getElementById("item-name").value = "";
+            loadTodo();
+        }
+
+        function loadTodo(){
+            var alltodos = localStorage.getItem("todos") || "[]";
+            var todos = JSON.parse(alltodos);
+            var newInnerHTML = "";
+            for(var i = 0; i < todos.length; i++){
+                var todoText = todos[i][0]
+                var todoState = todos[i][1]
+                var todo = `
+<div class="todo-item">
+    <h3 class="todo-item-name${todoState? " done" : ""}">${todoText}</h3>
+    <div class="buttons">
+        <button class="todo-item-button">✅</button>
+        <button class="todo-item-button">🗑️</button>
+    </div>
+</div>`;
+                newInnerHTML += todo;
+            }
+            console.log(newInnerHTML);
+            document.getElementById("todo-list").innerHTML = newInnerHTML;
+        }
+    </script>
 </body>
 </html>
