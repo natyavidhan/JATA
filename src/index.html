@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo</title>
+    <title>Just Another Todo App</title>
     <link rel="stylesheet" href="index.css">
     <script src="scripts/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 </head>
 <body style="font-family: 'Ubuntu', sans-serif;">
     <center>
-        <h1>ToDos</h1>
+        <h1>Just Another Todo App</h1>
     </center>
     <center>
         <div class="add-item">
@@ -53,14 +53,37 @@
 <div class="todo-item">
     <h3 class="todo-item-name${todoState? " done" : ""}">${todoText}</h3>
     <div class="buttons">
-        <button class="todo-item-button">✅</button>
-        <button class="todo-item-button">🗑️</button>
+        <button class="todo-item-button" onclick="completeTodo(${i})">✅</button>
+        <button class="todo-item-button" onclick="removeTodo(${i})">🗑️</button>
     </div>
 </div>`;
                 newInnerHTML += todo;
             }
-            console.log(newInnerHTML);
             document.getElementById("todo-list").innerHTML = newInnerHTML;
+        }
+        
+        function completeTodo(todo){
+            try{
+                var alltodos = localStorage.getItem("todos") || "[]";
+                var todos = JSON.parse(alltodos);
+                todos[todo][1] = true;
+                localStorage.setItem("todos", JSON.stringify(todos));
+            }catch(e){
+                console.log(e);
+            }
+            loadTodo();
+        }
+
+        function removeTodo(todo){
+            try{
+                var alltodos = localStorage.getItem("todos") || "[]";
+                var todos = JSON.parse(alltodos);
+                todos.splice(todo, 1);
+                localStorage.setItem("todos", JSON.stringify(todos));
+            }catch(e){
+                console.log(e);
+            }
+            loadTodo();
         }
     </script>
 </body>
